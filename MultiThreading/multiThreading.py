@@ -1,39 +1,14 @@
-#!/usr/bin/env python
-# coding: utf-8
 
-# In[1]:
-
-
+#imported libraries
 import openpyxl
+import threading
 
-
-# In[17]:
-
-
-path="multi_threading_activity.xlsx"
-
-
-# In[18]:
-
-
+path="multi_threading_activity.xlsx" #path of xlsx file
 obj = openpyxl.load_workbook(path)
-
-
-# In[20]:
-
-
 sheet1 = obj.active
 
-
-# In[21]:
-
-
+#Read each column  and row of xl file and added to list
 mat=[]
-
-
-# In[25]:
-
-
 for i in range(1, sheet1.max_row+1):
   row=[]
   for j in range(1, sheet1.max_column+1):
@@ -43,27 +18,11 @@ for i in range(1, sheet1.max_row+1):
 print(mat)  
 
 
-# In[102]:
+mat.pop() #Got null list at so popped
+mat.pop()#Got null list at so popped
 
-
-mat.pop()
-
-
-# In[103]:
-
-
-mat.pop()
-
-
-# In[105]:
-
-
+#Replaced all the strings with value 0
 new=mat[1:]
-
-
-# In[106]:
-
-
 for i in range(len(new)):
   for j in range(2):
     if  type(new[i][j])==str:
@@ -73,25 +32,10 @@ for i in range(len(new)):
       print(new[i][j])
       new[i][j]=0
 
-
 print(new)      
-
-
-# In[107]:
-
-
 print(len(new))
 
-
-# In[195]:
-
-
-import threading
-
-
-# In[209]:
-
-
+#calculated the sum of columns by adding corresonding rows
 result=[]
 def sum_of_two_rows(new):
   sumMat=[]
@@ -101,9 +45,7 @@ def sum_of_two_rows(new):
   print(sumMat)
 
 
-# In[210]:
-
-
+#Found the difference of columns by subbtracting corresponding rows
 def diff_of_tow_rows(new):
   diffMat=[]
   for i in range(len(new)):
@@ -111,63 +53,16 @@ def diff_of_tow_rows(new):
   result.append(diffMat)
   print(diffMat)
 
-
-# In[211]:
-
-
 t1=threading.Thread(target=sum_of_two_rows,args=(new,))
-
-
-# In[212]:
-
-
 t2=threading.Thread(target=diff_of_tow_rows,args=(new,))
-
-
-# In[213]:
-
-
 t1.start()
-
-
-# In[214]:
-
-
 t2.start()
-
-
-# In[215]:
-
-
 a=t1.join()
-
-
-# In[216]:
-
-
 b=t2.join()
-
-
-# In[217]:
-
-
-print(result)
-
-
-# In[220]:
-
-
+print(result) #it contains list of sum and diffference of rows
 col1=result[0]
-
-
-# In[223]:
-
-
-col1
-
-
-# In[222]:
-
+print(col1) #it gives sum
 
 col2=result[1]
+print(col2) # it gives difference
 
