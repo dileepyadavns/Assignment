@@ -1,0 +1,21 @@
+Readme
+.
+
+Approach:
+
+1. Data Cleaning and Preprocessing:
+It means to bring your text into a form that is predictable and analyzable for your task.  
+
+2.Lower Casing:
+Lowercasing ALL your text data is one of the simplest and most effective forms of text preprocessing. It is used when dataset is not large and helps with performance of expected output.
+
+3.Stop words removal:
+Stop words are a set of commonly used words in a language. Examples of stop words in English are “a”, “the”, “is”, “are” and etc. The aim to use stopwords is to remove low information words from text, we can focus on the important words.
+4.Lemmatization:
+lemmatization have its own dictionary in the backend so it returns their root word.
+
+5.EDA
+
+6.Model Analysis:
+The text needs to be transformed to vectors so as the algorithms will be able make predictions.After removing punctuation, lower casing, stop words, and lemmatization importance of a word is determined in terms of its frequency.
+
