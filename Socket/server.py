@@ -1,3 +1,4 @@
+#im porting modules
 from socket import *
 from time import *
 
@@ -10,10 +11,10 @@ connection,address = server.accept()
 print("connected to client")
 
 while True:
-    data=input('Server: ')
+    data=input('Server: ') #to send message
     connection.send(bytes(data+ctime(),'utf-8'))
 
-    recData=connection.recv(1024).decode()
-    print('Client: '+recData)
+    recData=connection.recv(1024).decode() #decoded the message from client
+    print('Client: '+recData) 
 
-connection.close()
+connection.close() #closing the connection
