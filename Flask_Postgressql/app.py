@@ -23,7 +23,6 @@ class Item():
         conn.commit()
 
 #To Read created table
-
 @app.route('/')
 def Index():
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)  #cursor is used to read the rows in the table 
@@ -44,10 +43,10 @@ def add_student():
         lname = request.form['lname']
         email = request.form['email']
         print(email)
-        cur.execute("INSERT INTO students (fname, lname, email) VALUES (%s,%s,%s)", (fname, lname, email))
+        cur.execute("INSERT INTO students (fname, lname, email) VALUES (%s,%s,%s)", (fname, lname, email)) #to insert new row into table
         conn.commit()
         flash('Student Added successfully')
-        return redirect(url_for('Index'))
+        return redirect(url_for('Index'))#It will route to the index.html page
 
 
 #to edit the conetents of table
@@ -60,7 +59,7 @@ def get_employee(id):
     data = cur.fetchall()#all rows of table are fetched and returned as list of tuples 
     cur.close()
     print(data[0])
-    return render_template('edit.html', student = data[0])
+    return render_template('edit.html', student = data[0]) #it will display the edi.html page
 
 #update an row in the table
 @app.route('/update/<id>', methods=['POST'])
@@ -92,7 +91,7 @@ def delete_student(id):
     flash('Student Removed Successfully')
     return redirect(url_for('Index')) 
 
-app.secret_key = 'the random string' 
+app.secret_key = 'the random string'  #got an error as invalid secret key so created an secret key
 if __name__ == "__main__":
     obj=Item("dileep","yadav","dileep@123.com")
     obj.add_item()
