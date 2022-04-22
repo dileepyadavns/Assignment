@@ -1,5 +1,4 @@
 import os
-import psycopg2
 from flask import Flask, render_template, request, redirect, url_for, flash
 import psycopg2 #pip install psycopg2 
 import psycopg2.extras
