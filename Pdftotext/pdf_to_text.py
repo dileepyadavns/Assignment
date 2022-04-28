@@ -37,3 +37,4 @@ def searching_Word(sw):
 
 sw=input("Enter the word to search ")
 print("The Number of times the word {} in text file is: ".format(sw) + str(searching_Word(sw)))
+#it will print the number of times a word repeated in file
