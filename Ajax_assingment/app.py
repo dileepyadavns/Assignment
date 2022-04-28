@@ -13,14 +13,15 @@ conn = psycopg2.connect( #psycopg2 database adaptor for implementing python
 app = Flask(__name__)
 
 
-@app.route('/jsono')
-def countrydic():
+@app.route('/jsono') #this link will show the json format of databse table
+def rowdic():
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
    
     s = "SELECT * FROM students"
     cur.execute(s)
     res = cur.fetchall()
     list_rows = json.dumps([dict(r) for r in res])
+    #json.dumps used to convert python object to json fromat
  
     return list_rows
 
@@ -40,7 +41,6 @@ class Item():
         conn.commit()
 
 #To Read created table
-
 @app.route('/')
 def Index():
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)  #cursor is used to read the rows in the table 
@@ -115,5 +115,5 @@ app.secret_key = 'the random string'
 if __name__ == "__main__":
     obj=Item("dileep","yadav","dileep@123.com")
     obj.add_item()
-    app.run(debug=True,port=5100)
+    app.run(debug=True,port=5200)
    

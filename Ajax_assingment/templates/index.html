@@ -61,23 +61,25 @@
 <script>
 
 
-function ajax_get(url, callback) {
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+function ajax_get(url, ajax_fetch) {
+    var xmlhttp = new XMLHttpRequest();  //object
+    xmlhttp.onreadystatechange = function() { // called whenever ready state changes function triggers
+      //ready state describes loading state of document whwnever property changes readystatechange event fires
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) { //4 indicates request is finished and resposne is ready ,200 means ok
+        
             console.log('responseText:' + xmlhttp.responseText);
             try {
-                var data = JSON.parse(xmlhttp.responseText);
+                var data = JSON.parse(xmlhttp.responseText); //converts the json string to original object
             } catch(err) {
                 console.log(err.message + " in " + xmlhttp.responseText);
                 return;
             }
-            callback(data);
+            ajax_fetch(data);
         }
     };
  
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
+    xmlhttp.open("GET", url, true); //open method used toopen connection to server
+    xmlhttp.send(); //send will send request object to server
 }
  
 ajax_get('/jsono', function(data) {
@@ -97,11 +99,13 @@ ajax_get('/jsono', function(data) {
      td2.innerHTML=data[i].fname
      td3.innerHTML=data[i].lname
      td4.innerHTML=data[i].email
+     a1.href='/edit/'+data[i].id
      a1.innerHTML="Edit"
      a2.innerHTML="Delete"
+     a2.href='/delete/'+data[i].id //gives the id of the row which we want to delete
      tdB.append(a1,a2)
      tr.append(td1,td2,td3,td4,tdB)
-     tb.appendChild(tr)
+     tb.appendChild(tr) // ro add element
      
 }
 });
