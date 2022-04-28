@@ -93,7 +93,7 @@ def delete_student(id):
 
 app.secret_key = 'the random string' 
 if __name__ == "__main__":
-    obj=Item("dileep","yadav","dileep@123.com")
-    obj.add_item()
-    app.run(debug=True,port=5200)
+    # obj=Item("dileep","yadav","dileep@123.com")
+    # obj.add_item()
+    app.run(debug=True,port=5400)
    
