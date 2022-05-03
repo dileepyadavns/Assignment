@@ -1,23 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <style>
+       *{  /* * indicates all the elements */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: #105469;
+  font-family: 'Open Sans', sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+flex-direction: column;
+}
+form{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+flex-direction: column;
+}
+.inputs{
+  
+  border-radius: 16px;
+ 
+  padding: 10px;
+  
+  margin: 0px;
+}
 
-  <div>
-    <div >
-      <div >
-        <form action="/update/{{student.id}}" method="POST">
-          <div >
-            <input type="text" name="fname" value="{{student.fname}}" class="form-control">
-          </div>
-          <div >
-            <input type="text" name="lname" value="{{student.lname}}" class="form-control">
-          </div>
-          <div >
-            <input type="text" name="email" value="{{student.email}}" class="form-control">
-          </div>
-          <div >
-            <button type="submit" class="btn btn-primary btn-block">
-              Update
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+.button{
+  width:80px;
+  height: 30px;
+  border-radius: 10px;
+  background-color: orangered;
+  border: 0px;
+  color: white;
+
+}
+   </style>
+</head>
+<body  >
+    <form action="/update/{{student.id}}"  method="POST">
+        <h1 style="color: #E2B842;margin-top: 20px; font-size:30px;margin-bottom: 30px; text-align:center;">You can Edit Student Details</h1>
+
+        <input type="text" name="fname" required value="{{student.fname}}" class="inputs" placeholder="First Name">
+        </br>
+        <input type="text" name="lname" required value="{{student.lname}}" class="inputs" placeholder="Last Name">
+        </br>
+        <input type="text" name="email" pattern = "^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"  placeholder="Email" required value="{{student.email}}" class="inputs">
+    </br>
+    <button type="submit" class="button">Update</button>
+
+</form>
+</body>
+</html>

@@ -1,6 +1,6 @@
 import json
 import os
-from flask import Flask, jsonify,render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash
 import psycopg2 #pip install psycopg2 
 import psycopg2.extras
 from flask_sqlalchemy import SQLAlchemy 
@@ -25,20 +25,6 @@ def rowdic():
  
     return list_rows
 
-
-class Item():
-  
-  def __init__(self, fname,lname,email):
-    self.fname = fname
-    self.lname = lname
-    self.email=email
-  def as_dict(self):
-      return {'fname': self.fname,'lname':self.lname,'email':self.email} 
-
-  def add_item(self):
-        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        cur.execute("INSERT INTO students (fname, lname, email) VALUES (%s,%s,%s)", (self.fname, self.lname, self.email))
-        conn.commit()
 
 #To Read created table
 @app.route('/')
@@ -113,7 +99,6 @@ def delete_student(id):
 
 app.secret_key = 'the random string' 
 if __name__ == "__main__":
-    obj=Item("dileep","yadav","dileep@123.com")
-    obj.add_item()
-    app.run(debug=True,port=5200)
+   
+    app.run(debug=True,port=5600)
    

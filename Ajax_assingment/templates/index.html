@@ -1,25 +1,92 @@
+<!DOCTYPE html>
 <html>
-  <head></head>
+  <head>
+
+    <style>
+   
+* {    /* "*" indicates all the elements */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: #105469;
+  font-family: 'Open Sans', sans-serif;
+}
+table {
+  background: #012B39;
+  border-radius: 0.25em;
+  border-collapse: collapse;
+  margin: 1em;
+}
+
+th {
+  border-bottom: 1px solid #364043;
+  color: #E2B842;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 0.5em 1em;
+  text-align: left;
+}
+td {
+  color: #fff;
+  font-weight: 400;
+  padding: 0.65em 1em;
+}
+.disabled td {
+  color: #4F5F64;
+}
+
+tbody tr:hover {
+  background: #014055;
+}
+
+.inputs{
+  
+  border-radius: 16px;
+ 
+  padding: 10px;
+  
+  margin: 0px;
+}
+
+.button{
+  width:80px;
+  height: 30px;
+  border-radius: 10px;
+  background-color: orangered;
+  border: 0px;
+  color: white;
+
+}
+form{
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+}
+    </style>
+  </head>
+
 <body>
+  <div  >
   <div >
-  <div >
-     <h3 style="color:blueviolet; font-size:20px; text-align:center;">Students</h3>
+     <h1 style="color: #E2B842;margin-top: 20px; font-size:30px;margin-bottom: 30px; text-align:center;">You can insert Students</h1>
     <div id="container" style="display: flex; justify-content: center; flex-direction:column; align-items: center;" >
   
       <form  action="{{url_for('add_student')}}" id="form" method="POST">
         
-          <input type="text" class="form-control" name="fname" required placeholder="First Name">
+          <input type="text" class="inputs" name="fname" required placeholder="First Name">
           <br>
-          <br>
+         
         
-          <input type="text" class="form-control" name="lname" required placeholder="Last Name">
+          <input type="text" class="inputs" name="lname" required placeholder="Last Name">
        <br>
-       <br>
-          <input type="email" class="form-control" pattern = "^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"  name="email" required placeholder="Email">
+    
+          <input type="email" class="inputs" pattern = "^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"   name="email" required placeholder="Email">
+          <!-- <! on click button will check for the pattern >  -->
         <br>
-        <span id="span"></span>
-        <br>
-        <button  onclick="checkEmail()">
+        <button  class="button">
           Save 
         </button>
        
@@ -27,17 +94,17 @@
   
   </div>
   <br>
-  <br>
+ 
 </div >
   <div class="col-md-8" >
-    <table id="example" class="table table-striped table-bordered"  style="width:100%; margin-left:30px;">
-      <thead>
-        <tr>
-          <td>ID</td>
-          <td>First Name</td>
-          <td>Last Name</td>
-          <td>Email</td>
-          <td>Action</td>
+    <table  style="width:95%; margin-left:30px;">
+      <thead class="headPart">
+        <tr >
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody id="rows">
@@ -97,6 +164,10 @@ ajax_get('/jsono', function(data) {
      a1.href='/edit/'+data[i].id
      a1.innerHTML="Edit"
      a2.innerHTML="Delete"
+     a1.style.marginRight='10px'
+     a1.style.color="red"
+     a2.style.marginLeft='10px'
+     a2.style.color="red"
      a2.href='/delete/'+data[i].id //gives the id of the row which we want to delete
      tdB.append(a1,a2)
      tr.append(td1,td2,td3,td4,tdB)
