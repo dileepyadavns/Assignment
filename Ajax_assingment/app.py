@@ -1,11 +1,7 @@
 import json
-
-
 from flask import Flask, render_template, request, redirect, url_for, flash
 import psycopg2 #pip install psycopg2 
 import psycopg2.extras
-
-
 
 conn = psycopg2.connect( #psycopg2 database adaptor for implementing python
         host="localhost",
@@ -36,7 +32,7 @@ def Index():
 
     s = "SELECT * FROM student_details"
     cur.execute(s) # Execute the SQL
-    list_users = cur.fetchall()#fetches a
+    list_users = cur.fetchall()#fetches all the rows
     conn.commit()
     print(list_users)
     return render_template('index.html', list_users = list_users)
@@ -57,12 +53,12 @@ def add_student():
                 (%s, %s,%s)""",(fname,lname,email))        
             conn.commit()
             
-            #return render_template("index.html", msg="email exists")
+
         except psycopg2.IntegrityError:
             conn.rollback()
             s = "SELECT * FROM student_details"
             cur.execute(s) # Execute the SQL
-            list_users = cur.fetchall()#fetches a
+            list_users = cur.fetchall()#fetches all rows
             conn.commit()
             print(list_users)
             return render_template('index.html', list_users = list_users,msg='A user exists with same email try with new email')
