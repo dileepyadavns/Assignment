@@ -12,7 +12,7 @@ from nltk.stem import WordNetLemmatizer, SnowballStemmer
 nltk.download('wordnet')
 nltk.download('punkt')
 import string
-import matplotlib.pyplot as plt
+
 
 #for reading each text file from all folders and doing lemmatization,stopword removal.
 def for_reading_file(path):    
@@ -61,14 +61,14 @@ def for_reading_file(path):
             else:
                 new.append(j)
       
-    corpus2.append(new)    
-       
-  #sports array after removing the empty elements and finding the unique words
+    corpus2.append(new)      
+  #corpus after removing the empty elements and finding the unique words
+
   corpus3=[]
   for i in corpus2:
-    corpus3.append(" ".join(i))
+    corpus3.append(" ".join(i)) #array after making all the words from each file to string 
 
-  return corpus2,corpus3 #array after making string of words from each file 
+  return corpus2,corpus3 
 
 
 # business corpus"
@@ -149,13 +149,12 @@ from sklearn.ensemble import RandomForestClassifier
 svc1 = RandomForestClassifier(random_state = 0)
 svc1.fit(X_train, y_train)
 svc1_pred = svc1.predict(X_test)
-#print(f"Train Accuracy: {svc1.score(X_train, y_train)*100:.3f}%")
 print(f"Test Accuracy: {svc1.score(X_test, y_test)*100:.3f}%")
 
 # K Nearest Neighbours
 from sklearn.neighbors import KNeighborsClassifier
 svc4 = KNeighborsClassifier()
-#pprint(svc4.get_params())
+
 svc4.fit(X_train, y_train)
 svc4_pred = svc4.predict(X_test)
 #print(f"Train Accuracy: {svc4.score(X_train, y_train)*100:.3f}%")
